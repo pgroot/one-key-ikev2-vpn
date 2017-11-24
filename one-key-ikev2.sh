@@ -212,8 +212,7 @@ function pre_install(){
 
 # Download strongswan
 function download_files(){
-    strongswan_version='strongswan-5.5.1'
-    strongswan_file="$strongswan_version.tar.gz"
+    strongswan_file="strongswan.tar.bz2"
     if [ -f $strongswan_file ];then
         echo -e "$strongswan_file [$(__green "found")]"
     else
@@ -458,10 +457,11 @@ function SNAT_set(){
 
 # iptables check
 function iptables_check(){
-    cat > /etc/sysctl.d/10-ipsec.conf<<-EOF
+    cat > /etc/sysctl.conf<<-EOF
 net.ipv4.ip_forward=1
 EOF
     sysctl --system
+	sysctl -p
     echo "Do you use firewall in CentOS7 instead of iptables?"
     read -p "yes or no?(default_value:no):" use_firewall
     if [ "$use_firewall" = "yes" ]; then
