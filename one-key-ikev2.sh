@@ -459,10 +459,7 @@ function SNAT_set(){
 
 # iptables check
 function iptables_check(){
-    cat > /etc/sysctl.conf<<-EOF
-net.ipv4.ip_forward=1
-EOF
-    sysctl --system
+	sed -i 's/net\.ipv4\.ip_forward = 0/net\.ipv4\.ip_forward = 1/' /etc/sysctl.conf
 	sysctl -p
     echo "Do you use firewall in CentOS7 instead of iptables?"
     read -p "yes or no?(default_value:no):" use_firewall
