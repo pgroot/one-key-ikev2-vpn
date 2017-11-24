@@ -225,7 +225,7 @@ function download_files(){
 	mkdir -p ./strongswan
     tar xjf strongswan.tar.bz2  --strip-components 1 -C ./strongswan/
     if [ $? -eq 0 ];then
-        cd $cur_dir/$strongswan_version/
+        cd $cur_dir/strongswan/
     else
         echo ""
         echo "Unzip $strongswan_file failed! Please visit https://quericy.me/blog/699 and contact."
